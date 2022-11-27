@@ -18,7 +18,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        //primarySwatch: Colors.red,
+        primarySwatch: Colors.orange,
+        appBarTheme: AppBarTheme(
+          iconTheme: IconThemeData(
+            color: Colors.white
+          ),
+          color: Color(0xff112a34),
+        ),
         fontFamily: 'Akrobat-Semibold',
       ),
       home: Animated_splash(),
@@ -47,12 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: tumSayfalar[selectedItem],
       appBar: AppBar(
         centerTitle: true,
-        title: Image.asset('assets/logo.png', color:Colors.white, fit: BoxFit.cover, width: 160,),
+        title: Image.asset('assets/logo.png', fit: BoxFit.cover, width: 160,),
       ),
 
       drawer: Drawerbar(),
       bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.blueAccent,
+          selectedItemColor: Colors.orange,
           currentIndex: selectedItem,
           type: BottomNavigationBarType.fixed,
           items: const <BottomNavigationBarItem>[

@@ -43,7 +43,7 @@ android {
     defaultConfig {
         applicationId "com.VizyonVET.kedi_pansiyon"
         minSdkVersion 21
-        compileSdkVersion 32
+        compileSdkVersion 33
         targetSdkVersion flutter.targetSdkVersion
         versionCode 1
         versionName flutterVersionName

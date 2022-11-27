@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Iletisim extends StatefulWidget {
   @override
@@ -9,8 +11,38 @@ class Iletisim extends StatefulWidget {
 
 class _Iletisim  extends State<Iletisim> {
 
+  Set<Marker> markers = {};
+  late BitmapDescriptor mapMarker;
+
   Completer<GoogleMapController> haritakontrol = Completer();
-  var baslangickonum = CameraPosition(target: LatLng(41.032940,29.175350),zoom: 14,);
+  var baslangickonum = CameraPosition(target: LatLng(41.032940,29.175350),zoom: 16,);
+
+  void setCustomMarker()async {
+    mapMarker = await BitmapDescriptor.fromAssetImage(
+        ImageConfiguration(), 'assets/location.png');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setCustomMarker();
+  }
+
+  void _0nMapCreated(GoogleMapController googleMapController){
+    setState(() {
+      markers.add(
+        Marker(
+        markerId: MarkerId('defaultLocation'),
+        position: LatLng(41.032940,29.175350),
+        icon: mapMarker,
+        infoWindow: InfoWindow(
+          title: 'Vizyon Veteriner Kliniği',
+          snippet: 'Mimar Sinan/Çekmeköy',
+        ),
+      ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +62,13 @@ class _Iletisim  extends State<Iletisim> {
                 SizedBox(
                   height: 300,
                   child: GoogleMap(
-                      mapType: MapType.normal,
-                      initialCameraPosition: baslangickonum,
-                      onMapCreated: (GoogleMapController controller){
+                    onMapCreated: _0nMapCreated
+                      /*(GoogleMapController controller){
                         haritakontrol.complete(controller);
-                      }
+                      }*/,
+                      mapType: MapType.normal,
+                      markers: markers,
+                      initialCameraPosition: baslangickonum,
                   ),
                 ),
 
@@ -66,8 +100,8 @@ class _Iletisim  extends State<Iletisim> {
                 Row(
                   children: [
                     Image(
-                      height: 25,
-                      width: 25,
+                      height: 30,
+                      width: 30,
                       image: AssetImage('assets/phone.png'),
                       fit: BoxFit.contain,
                     ),
@@ -82,15 +116,15 @@ class _Iletisim  extends State<Iletisim> {
                 ),
 
                 SizedBox(
-                  height: 6,
+                  height: 10,
                 ),
 
 
                 Row(
                   children: [
                     Image(
-                        height: 25,
-                        width: 25,
+                        height: 30,
+                        width: 30,
                         image: AssetImage('assets/instagram.png'),
                         fit: BoxFit.contain
                     ),
@@ -105,19 +139,27 @@ class _Iletisim  extends State<Iletisim> {
                 ),
 
                 SizedBox(
-                  height: 6,
+                  height: 10,
                 ),
 
                 Row(
                   children: [
-                    Image(
-                        height: 27,
-                        width: 27,
+                    IconButton(
+                      onPressed: (){
+                        openwhatsapp();
+                      }, iconSize: 33.0,
+                      icon: const Icon(
+                        Icons.whatsapp,
+                      ),
+                    ),
+                    /*Image(
+                        height: 33,
+                        width: 33,
                         image: AssetImage('assets/whatsapp.png'),
                         fit: BoxFit.contain
-                    ),
+                    ),*/
                     Text(
-                      '  Sorumlu Veteriner Hekim'
+                      '  Whatsapp İletişim Hattı'
                       ,style: TextStyle(
                       fontSize: 16,  fontWeight: FontWeight.bold,
                     ),
@@ -127,15 +169,15 @@ class _Iletisim  extends State<Iletisim> {
                 ),
 
                 SizedBox(
-                  height: 6,
+                  height: 10,
                 ),
 
 
                 Row(
                   children: [
                     Image(
-                        height: 25,
-                        width: 25,
+                        height: 30,
+                        width: 30,
                         image: AssetImage('assets/web.png'),
                         fit: BoxFit.contain
                     ),
@@ -153,12 +195,24 @@ class _Iletisim  extends State<Iletisim> {
           ),
 
 
-
-
          ),
        ),
       ),
     );
-
   }
+
+  Future<void> openwhatsapp() async{
+    String url = "https://api.whatsapp.com/send/?phone=+905427695260&text=Merhabalar";
+    final Uri _url = Uri.parse(url);
+    await canLaunchUrl(_url) ? canLaunchUrl(_url) : print('Whatsapp Uygulaması Açılamadı!');
+  }
+
+
+
+
+
+
+
+
+
 }

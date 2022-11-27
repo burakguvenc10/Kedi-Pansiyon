@@ -33,17 +33,23 @@ class Drawer_BodyState extends State<Drawer_Body> {
               ),
           ),
 
+          SizedBox(
+            height: 20,
+          ),
+
           Container(
             margin: const EdgeInsets.only(top: 12.0),
             child:Text(
-              "Bize Ulaşın",style: TextStyle(color: Colors.grey.shade600, fontSize: 18),
+              "Adres",style: TextStyle(color: Colors.grey.shade600, fontSize: 18),
             ),
           ),
+
           Container(
             margin: const EdgeInsets.only(left: 80.0, right: 80.0,top: 3,bottom: 4),
             height: 1.0,
             color: Colors.grey.shade600,
           ),
+
           Text(
             'Mimar Sinan, Mimar Sinan Cd. No:13-2, 34782 Çekmeköy/İstanbul'
             ,style: TextStyle(
@@ -53,7 +59,19 @@ class Drawer_BodyState extends State<Drawer_Body> {
           ),
 
           SizedBox(
-            height: 16,
+            height: 20,
+          ),
+
+          Container(
+            margin: const EdgeInsets.only(top: 12.0),
+            child:Text(
+              "İletişim",style: TextStyle(color: Colors.grey.shade600, fontSize: 18),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(left: 80.0, right: 80.0,top: 3),
+            height: 1.0,
+            color: Colors.grey.shade600,
           ),
 
           Container(
@@ -79,7 +97,7 @@ class Drawer_BodyState extends State<Drawer_Body> {
               ),
 
               SizedBox(
-                height: 8,
+                height: 10,
               ),
 
               Row(
@@ -101,10 +119,10 @@ class Drawer_BodyState extends State<Drawer_Body> {
               ),
 
               SizedBox(
-                height: 8,
+                height: 10,
               ),
 
-              Row(
+              /*Row(
                 children: [
                   Image(
                       height: 27,
@@ -113,7 +131,7 @@ class Drawer_BodyState extends State<Drawer_Body> {
                       fit: BoxFit.contain
                   ),
                   Text(
-                    '  Sorumlu Veteriner Hekim'
+                    '  İletişim Hattı'
                     ,style: TextStyle(
                     fontSize: 16,  fontWeight: FontWeight.bold,
                   ),
@@ -123,8 +141,8 @@ class Drawer_BodyState extends State<Drawer_Body> {
               ),
 
               SizedBox(
-                height: 8,
-              ),
+                height: 10,
+              ),*/
 
               Row(
                 children: [
@@ -148,8 +166,19 @@ class Drawer_BodyState extends State<Drawer_Body> {
           ),
 
           SizedBox(
-            height: 17,
+            height: 14,
           ),
+
+          Padding(
+            padding: EdgeInsets.only(right: 85),
+
+            child: Image(
+              image: AssetImage('assets/vizyonlogo.png'),
+              height: 35,
+            ),
+          ),
+
+
         ],
 
 

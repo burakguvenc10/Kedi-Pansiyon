@@ -6,30 +6,22 @@ import 'package:page_transition/page_transition.dart';
 class Animated_splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          fontFamily: 'Akrobat-Semibold',
-        ),
-        home: AnimatedSplashScreen(
+    return AnimatedSplashScreen(
             duration: 1400,
-            splash: Stack(
+            splash: Center(
+              child: Stack(
                 children:[
-                  Image.asset('assets/gif/home.gif',fit: BoxFit.fill, height: 90 ,width: 90),
 
-                  SizedBox(
-                    height: 15,
-                  ),
+                  Image.asset('assets/logo.png' ,height: 250, width: 250),
 
-                  Image.asset('assets/gif/runcat.gif',fit: BoxFit.fill, height: 130 ,width: 130,color: Colors.white),
-
+                  Image.asset('assets/gif/runcat.gif',height: 120, width: 150,color: Colors.orange),
                 ],
-            ), nextScreen: MyHomePage(),
+              ),
+            ),
+            nextScreen: MyHomePage(),
             splashTransition: SplashTransition.sizeTransition,
             pageTransitionType: PageTransitionType.fade,
-            backgroundColor: Colors.blueAccent,
-        ),
-    );
+            backgroundColor: Colors.grey.shade200,
+        );
   }
 }

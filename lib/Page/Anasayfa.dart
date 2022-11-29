@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:animated_button/animated_button.dart';
+
 
 class Anasayfa extends StatefulWidget {
   @override
@@ -19,16 +21,11 @@ class _Anasayfa extends State<Anasayfa> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-          padding: const EdgeInsets.all(15.0),
-            child:Card(
-            elevation: 3,
-            color: Colors.grey[100],
-            child:Container(
-            margin: const EdgeInsets.all(20.0),
-            child: Scrollbar(
-              child: Column(
+    return Scrollbar(
+      //backgroundColor: Colors.grey[100],
+      child: Container(
+          margin: const EdgeInsets.all(20.0),
+          child: Column(
               children: [
 
                 Card(
@@ -51,14 +48,14 @@ class _Anasayfa extends State<Anasayfa> {
                   ),
                 ),
 
-                  Row(
+                Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: imgList.asMap().entries.map((entry) {
                       return GestureDetector(
                         onTap: () => buttonCarouselController.animateToPage(entry.key),
                         child: Container(
-                          width: 9.0,
-                          height: 9.0,
+                          width: 7.0,
+                          height: 7.0,
                           margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -72,13 +69,44 @@ class _Anasayfa extends State<Anasayfa> {
                     }).toList(),
                   ),
 
+              SizedBox(
+                height: 25,
+              ),
+
+              AnimatedButton(
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset('assets/gif/doc.gif',color: Colors.white),
+                      Text(
+                        'Fiyat Listesi İçin Tıklayınız',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'Akrobat-Regular',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                color: Colors.orangeAccent,
+                enabled : true,
+                duration: 25,
+                shadowDegree: ShadowDegree.dark,
+                width: 210,
+                onPressed: () {
+                },
+              ),
 
                 SizedBox(
-                  height: 25,
+                  height: 35,
                 ),
 
                 Padding(
-                  padding: EdgeInsets.only(right: 185),
+                  padding: EdgeInsets.only(right: 195),
                   child:Image.asset(
                       height: 120,
                       'assets/dog1.png'
@@ -90,28 +118,25 @@ class _Anasayfa extends State<Anasayfa> {
                 ),
 
                 Padding(
-                  padding: EdgeInsets.only(left: 185),
+                  padding: EdgeInsets.only(left: 195),
                   child:Image.asset(
-                      height: 130,
+                      height: 120,
                       'assets/dog2.png'
                   ),
                 ),
 
                 SizedBox(
-                  height: 25,
+                  height: 10,
                 ),
 
-
-                //Table
 
             ],
 
 
 
-              ),
-            ),
+
+
           ),
-        ),
       ),
     );
   }

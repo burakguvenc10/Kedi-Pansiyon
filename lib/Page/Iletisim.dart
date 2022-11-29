@@ -1,8 +1,9 @@
 import 'dart:async';
-import 'dart:io';
+import 'package:open_whatsapp/open_whatsapp.dart';
+import 'package:flutter/services.dart';
+import 'package:animated_button/animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Iletisim extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class _Iletisim  extends State<Iletisim> {
 
   Set<Marker> markers = {};
   late BitmapDescriptor mapMarker;
+  String _platformVersion = 'Unknown';
 
   Completer<GoogleMapController> haritakontrol = Completer();
   var baslangickonum = CameraPosition(target: LatLng(41.032940,29.175350),zoom: 16,);
@@ -26,6 +28,7 @@ class _Iletisim  extends State<Iletisim> {
   void initState() {
     super.initState();
     setCustomMarker();
+    initPlatformState();
   }
 
   void _0nMapCreated(GoogleMapController googleMapController){
@@ -44,10 +47,25 @@ class _Iletisim  extends State<Iletisim> {
     });
   }
 
+  Future<void> initPlatformState() async {
+    String platformVersion;
+    try {
+      platformVersion = await FlutterOpenWhatsapp.platformVersion;
+    } on PlatformException {
+      platformVersion = 'Failed to get platform version.';
+    }
+
+    if (!mounted) return;
+
+    setState(() {
+      _platformVersion = platformVersion;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Scrollbar(
+    return Scrollbar(
         child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Card(
@@ -142,36 +160,6 @@ class _Iletisim  extends State<Iletisim> {
                   height: 10,
                 ),
 
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: (){
-                        openwhatsapp();
-                      }, iconSize: 33.0,
-                      icon: const Icon(
-                        Icons.whatsapp,
-                      ),
-                    ),
-                    /*Image(
-                        height: 33,
-                        width: 33,
-                        image: AssetImage('assets/whatsapp.png'),
-                        fit: BoxFit.contain
-                    ),*/
-                    Text(
-                      '  Whatsapp İletişim Hattı'
-                      ,style: TextStyle(
-                      fontSize: 16,  fontWeight: FontWeight.bold,
-                    ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-
-                SizedBox(
-                  height: 10,
-                ),
-
 
                 Row(
                   children: [
@@ -190,21 +178,56 @@ class _Iletisim  extends State<Iletisim> {
                     ),
                   ],
                 ),
+
+                SizedBox(
+                  height: 10,
+                ),
+
+
+                Row(
+                  children: [
+                    AnimatedButton(
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Image.asset('assets/whatsapp.png',height: 30,width: 32,),
+                            SizedBox(width: 5),
+                            Text(
+                              'Whatsapp İletişim Hattı',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: 'Akrobat-Regular',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      color: Colors.green,
+                      enabled : true,
+                      duration: 30,
+                      shadowDegree: ShadowDegree.dark,
+                      width: 195,
+                      height: 54,
+                      onPressed: () {
+                        FlutterOpenWhatsapp.sendSingleMessage("905531039040", "Merhabalar, ");
+                      },
+                    ),
+                  ],
+                ),
+
+
+
+
               ],
             ),
-          ),
-
-
+           ),
          ),
        ),
-      ),
     );
-  }
-
-  Future<void> openwhatsapp() async{
-    String url = "https://api.whatsapp.com/send/?phone=+905427695260&text=Merhabalar";
-    final Uri _url = Uri.parse(url);
-    await canLaunchUrl(_url) ? canLaunchUrl(_url) : print('Whatsapp Uygulaması Açılamadı!');
   }
 
 

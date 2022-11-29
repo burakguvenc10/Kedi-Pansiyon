@@ -9,13 +9,20 @@ class Animated_splash extends StatelessWidget {
     return AnimatedSplashScreen(
             duration: 1400,
             splash: Center(
-              child: Stack(
+              child:Stack(
                 children:[
+                  Image.asset('assets/logo.png' ,height: 250, width: 250, alignment: Alignment.center,),
 
-                  Image.asset('assets/logo.png' ,height: 250, width: 250),
+                  SizedBox(
+                    height: 10,
+                  ),
 
-                  Image.asset('assets/gif/runcat.gif',height: 120, width: 150,color: Colors.orange),
-                ],
+                  SizedBox(
+                    height: 10,
+                  ),
+
+                  Image.asset('assets/gif/runcat.gif',height: 120, width: 150,color: Colors.orange,),
+               ],
               ),
             ),
             nextScreen: MyHomePage(),

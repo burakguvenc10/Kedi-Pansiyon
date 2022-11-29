@@ -47,5 +47,6 @@
             <data android:scheme="tel" />
         </intent>
 
+
     </queries>
 </manifest>

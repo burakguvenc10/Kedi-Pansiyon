@@ -21,6 +21,8 @@ dependencies:
   url_launcher: ^6.1.7
   carousel_slider: ^4.1.1
   easy_table: ^2.2.0
+  animated_button: ^0.2.0
+  open_whatsapp: ^0.0.1
 
 
 dev_dependencies:

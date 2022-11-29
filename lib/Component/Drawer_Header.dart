@@ -11,7 +11,7 @@ class Drawer_HeaderState extends State<Drawer_Header> {
     return Container(
       color: Colors.grey[200],
       width: double.infinity,
-      height: 200,
+      height: 220,
       padding: EdgeInsets.only(top: 20.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

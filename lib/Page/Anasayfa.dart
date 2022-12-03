@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:animated_button/animated_button.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
+import '../Component/Dialog_Detail.dart';
 
 
 class Anasayfa extends StatefulWidget {
@@ -18,6 +20,11 @@ class _Anasayfa extends State<Anasayfa> {
     'assets/cat3.jpg',
     'assets/cat4.jpg',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,6 +105,25 @@ class _Anasayfa extends State<Anasayfa> {
                 shadowDegree: ShadowDegree.dark,
                 width: 210,
                 onPressed: () {
+                  showAnimatedDialog(
+                    context: context,
+                    barrierDismissible: true,
+                    builder: (BuildContext context) {
+                      return ClassicGeneralDialogWidget(
+                        actions: [
+                          Dialog_Detail(),
+                        ]
+                        /*onPositiveClick: () {
+                        },
+                        onNegativeClick: () {
+                          Navigator.of(context).pop();
+                        },*/
+                      );
+                    },
+                    animationType: DialogTransitionType.size,
+                    curve: Curves.easeInBack,
+                    duration: Duration(seconds: 1),
+                  );
                 },
               ),
 
@@ -139,5 +165,6 @@ class _Anasayfa extends State<Anasayfa> {
           ),
       ),
     );
+
   }
 }

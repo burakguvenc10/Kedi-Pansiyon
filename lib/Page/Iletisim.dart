@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:open_whatsapp/open_whatsapp.dart';
+//import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:flutter/services.dart';
 import 'package:animated_button/animated_button.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +48,7 @@ class _Iletisim  extends State<Iletisim> {
   }
 
   Future<void> initPlatformState() async {
-    String platformVersion;
+    /*String platformVersion;
     try {
       platformVersion = await FlutterOpenWhatsapp.platformVersion;
     } on PlatformException {
@@ -59,7 +59,7 @@ class _Iletisim  extends State<Iletisim> {
 
     setState(() {
       _platformVersion = platformVersion;
-    });
+    });*/
   }
 
 
@@ -213,7 +213,7 @@ class _Iletisim  extends State<Iletisim> {
                       width: 195,
                       height: 54,
                       onPressed: () {
-                        FlutterOpenWhatsapp.sendSingleMessage("905531039040", "Merhabalar, ");
+                        //FlutterOpenWhatsapp.sendSingleMessage("905531039040", "Merhabalar, ");
                       },
                     ),
                   ],
